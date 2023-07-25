@@ -9,15 +9,21 @@ defmodule Games.GuessingGame do
 
   defp game_loop({random, count}) do
     input = guess()
+
     cond do
-      count == 1 -> IO.puts("You lose! the answer was #{random}")
+      count == 1 ->
+        IO.puts("You lose! the answer was #{random}")
+
       input < random ->
         IO.puts("Too Low!")
         game_loop({random, count - 1})
+
       input > random ->
         IO.puts("Too High!")
         game_loop({random, count - 1})
-      true -> IO.puts("Correct!")
+
+      true ->
+        IO.puts("Correct!")
     end
   end
 
