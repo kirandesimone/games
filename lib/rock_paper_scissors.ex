@@ -3,7 +3,10 @@ defmodule Games.RockPaperScissors do
   Documentation for `RockPaperScissors` game
   """
   defp player_choice,
-    do: IO.gets(~s(Choose "rock", "paper", or "scissors": )) |> String.trim("\n") |> String.downcase()
+    do:
+      IO.gets(~s(Choose "rock", "paper", or "scissors": ))
+      |> String.trim("\n")
+      |> String.downcase()
 
   defp ai_chioce, do: Enum.random(["rock", "paper", "scissors"])
 
