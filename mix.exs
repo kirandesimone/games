@@ -22,7 +22,8 @@ defmodule Games.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
-      {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.30.4", only: :dev, runtime: false}
 
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
     ]

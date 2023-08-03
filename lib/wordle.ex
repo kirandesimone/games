@@ -11,12 +11,25 @@ defmodule Games.Wordle do
 
   defp game_loop(answer, attemps) do
     guess = get_user_input()
-    case feedback(answer, guess) do
-      [:green, :green, :green, :green, :green] -> IO.puts("You Win!")
+    response = feedback(answer, guess)
+    IO.puts(response)
+
+    case response do
+      "green green green green green" -> IO.puts("You Win!")
       _ -> game_loop(answer, attemps - 1)
     end
   end
 
+  @doc """
+    feedback/2
+
+    feedback for when a player makes a guess
+
+    ## Examples
+        iex > Games.Wordle.feedback(["a", "a", "a", "a", "a"], "aaaaa")
+            "green green green green green"
+  """
+  @spec feedback([String.t()], binary) :: binary
   def feedback(answer, guess) do
     split_guess = String.split(guess, "", trim: true)
 
@@ -31,9 +44,10 @@ defmodule Games.Wordle do
       end
     end)
     |> Enum.reverse()
-    |> IO.inspect()
+    |> Enum.join(" ")
   end
 
+  @spec play :: :ok
   def play do
     answer = Enum.random(["pizza", "quick", "jiffy"])
     split_answer = String.split(answer, "", trim: true)

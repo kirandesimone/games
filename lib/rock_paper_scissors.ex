@@ -11,11 +11,11 @@ defmodule Games.RockPaperScissors do
   defp ai_chioce, do: Enum.random(["rock", "paper", "scissors"])
 
   @doc """
-  play_rps   fight logic
-  ## Examples
+  play_rps/2
 
-    iex > play_rps("rock", "paper")
-    "You Win!"
+  ## Examples
+      iex > Games.RockPaperScissors.play_rps("rock", "paper")
+          "You Win!"
   """
   @spec play_rps(String.t(), String.t()) :: :ok
   def play_rps(player_1, player_2) do
