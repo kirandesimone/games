@@ -20,11 +20,25 @@ defmodule Games.RockPaperScissors do
   @spec play_rps(String.t(), String.t()) :: :ok
   def play_rps(player_1, player_2) do
     cond do
-      player_1 == player_2 -> IO.puts("It's a tie!")
-      player_1 == "rock" and player_2 == "scissors" -> IO.puts("You Win!")
-      player_1 == "paper" and player_2 == "rock" -> IO.puts("You Win!")
-      player_1 == "scissors" and player_2 == "paper" -> IO.puts("You Win!")
-      true -> IO.puts("You Lose!")
+      player_1 == player_2 ->
+        IO.puts("It's a tie!")
+        Games.main("Return")
+
+      player_1 == "rock" and player_2 == "scissors" ->
+        IO.puts("You Win!")
+        Games.main("Return")
+
+      player_1 == "paper" and player_2 == "rock" ->
+        IO.puts("You Win!")
+        Games.main("Return")
+
+      player_1 == "scissors" and player_2 == "paper" ->
+        IO.puts("You Win!")
+        Games.main("Return")
+
+      true ->
+        IO.puts("You Lose!")
+        Games.main("Return")
     end
   end
 

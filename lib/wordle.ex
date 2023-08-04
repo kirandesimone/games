@@ -7,7 +7,10 @@ defmodule Games.Wordle do
   defp get_user_input,
     do: IO.gets("Enter a five letter word: ") |> String.trim("\n") |> String.downcase()
 
-  defp game_loop(_, 0), do: IO.puts("Sorry, You Lose!")
+  defp game_loop(_, 0) do
+    IO.puts("Sorry, You Lose!")
+    Games.main("Return")
+  end
 
   defp game_loop(answer, attemps) do
     guess = get_user_input()
@@ -15,8 +18,12 @@ defmodule Games.Wordle do
     IO.puts(response)
 
     case response do
-      "green green green green green" -> IO.puts("You Win!")
-      _ -> game_loop(answer, attemps - 1)
+      "green green green green green" ->
+        IO.puts("You Win!")
+        Games.main("Return")
+
+      _ ->
+        game_loop(answer, attemps - 1)
     end
   end
 

@@ -24,6 +24,7 @@ defmodule Games.GuessingGame do
 
       true ->
         IO.puts("Correct!")
+        Games.main("Return")
     end
   end
 

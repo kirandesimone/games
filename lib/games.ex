@@ -6,6 +6,7 @@ defmodule Games do
   def main(_args) do
     player_choice =
       IO.gets(~s"""
+
       What game would you like to play?
       1. Guessing Game
       2. Rock Paper Scissors
