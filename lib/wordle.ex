@@ -20,6 +20,7 @@ defmodule Games.Wordle do
     case response do
       "green green green green green" ->
         IO.puts("You Win!")
+        Games.ScoreTracker.add_points(25)
         Games.main("Return")
 
       _ ->
@@ -36,7 +37,7 @@ defmodule Games.Wordle do
         iex > Games.Wordle.feedback(["a", "a", "a", "a", "a"], "aaaaa")
             "green green green green green"
   """
-  @spec feedback([String.t()], binary) :: binary
+  @spec feedback([String.t()], String.t()) :: String.t()
   def feedback(answer, guess) do
     split_guess = String.split(guess, "", trim: true)
 

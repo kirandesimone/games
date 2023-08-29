@@ -7,7 +7,7 @@ defmodule Games.GuessingGame do
   defp guess,
     do: IO.gets("Guess a number between 1 and 10: ") |> String.trim("\n") |> String.to_integer()
 
-  defp game_loop({random, count}) do
+  defp game_loop(random, count) do
     input = guess()
 
     cond do
@@ -16,19 +16,21 @@ defmodule Games.GuessingGame do
 
       input < random ->
         IO.puts("Too Low!")
-        game_loop({random, count - 1})
+        game_loop(random, count - 1)
 
       input > random ->
         IO.puts("Too High!")
-        game_loop({random, count - 1})
+        game_loop(random, count - 1)
 
       true ->
         IO.puts("Correct!")
+        Games.ScoreTracker.add_points(5)
         Games.main("Return")
     end
   end
 
+  @spec play :: :ok
   def play do
-    {Enum.random(1..10), @limit} |> game_loop()
+    game_loop(Enum.random(1..10), @limit)
   end
 end

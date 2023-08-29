@@ -3,6 +3,7 @@ defmodule Games do
   ## Executable
     Game menu for player to choose a game
   """
+  @spec main(any) :: :ok
   def main(_args) do
     player_choice =
       IO.gets(~s"""
@@ -13,6 +14,10 @@ defmodule Games do
       3. Wordle
 
       enter "stop" to exit
+
+      =================================
+      Your score is #{Games.ScoreTracker.get_points()}
+      =================================
 
       """)
       |> String.downcase()

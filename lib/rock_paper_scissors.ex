@@ -10,42 +10,32 @@ defmodule Games.RockPaperScissors do
 
   defp ai_chioce, do: Enum.random(["rock", "paper", "scissors"])
 
-  @doc """
-  play_rps/2
+  defp play_rps("rock", "scissors"), do: "Player 1"
+  defp play_rps("paper", "rock"), do: "Player 1"
+  defp play_rps("scissors", "paper"), do: "Player 1"
+  defp play_rps(player_1, player_2) when player_1 == player_2, do: "Both"
 
-  ## Examples
-      iex > Games.RockPaperScissors.play_rps("rock", "paper")
-          "You Win!"
-  """
-  @spec play_rps(String.t(), String.t()) :: :ok
-  def play_rps(player_1, player_2) do
-    cond do
-      player_1 == player_2 ->
-        IO.puts("It's a tie!")
-        Games.main("Return")
-
-      player_1 == "rock" and player_2 == "scissors" ->
+  @spec decide(any, any) :: :ok
+  def decide(player_1, player_2) do
+    case play_rps(player_1, player_2) do
+      "Player 1" ->
         IO.puts("You Win!")
-        Games.main("Return")
+        Games.ScoreTracker.add_points(10)
 
-      player_1 == "paper" and player_2 == "rock" ->
-        IO.puts("You Win!")
-        Games.main("Return")
+      "Both" ->
+        IO.puts("You Tied!")
 
-      player_1 == "scissors" and player_2 == "paper" ->
-        IO.puts("You Win!")
-        Games.main("Return")
-
-      true ->
+      _ ->
         IO.puts("You Lose!")
-        Games.main("Return")
     end
+
+    Games.main("Return")
   end
 
   @spec play :: :ok
   def play do
     player_1 = player_choice()
     player_2 = ai_chioce()
-    play_rps(player_1, player_2)
+    decide(player_1, player_2)
   end
 end
