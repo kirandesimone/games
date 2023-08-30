@@ -10,13 +10,14 @@ defmodule Games.RockPaperScissors do
 
   defp ai_chioce, do: Enum.random(["rock", "paper", "scissors"])
 
-  defp play_rps("rock", "scissors"), do: "Player 1"
-  defp play_rps("paper", "rock"), do: "Player 1"
-  defp play_rps("scissors", "paper"), do: "Player 1"
-  defp play_rps(player_1, player_2) when player_1 == player_2, do: "Both"
+  def play_rps("rock", "scissors"), do: "Player 1"
+  def play_rps("paper", "rock"), do: "Player 1"
+  def play_rps("scissors", "paper"), do: "Player 1"
+  def play_rps(player_1, player_2) when player_1 == player_2, do: "Both"
+  def play_rps(_player_1, player_2), do: player_2
 
   @spec decide(any, any) :: :ok
-  def decide(player_1, player_2) do
+  defp decide(player_1, player_2) do
     case play_rps(player_1, player_2) do
       "Player 1" ->
         IO.puts("You Win!")
